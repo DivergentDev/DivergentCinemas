@@ -15,6 +15,7 @@ import ImageOverlay from 'react-native-image-overlay';
 import Utils from '../Helpers/Utils';
 import { Container, Header, Content, Button } from 'native-base';
 import * as Font from 'expo-font';
+import FLText from '../components/FLText';
 
 const titleFontSize = 26;
 const captionFontSize = titleFontSize * 0.75;
@@ -118,21 +119,6 @@ const textStyles = {
 }
 
 
-const FontLoadedText = ({isFontLoaded, font, style, children}) => {
-  if (!isFontLoaded) {
-    return (
-      <ActivityIndicator size={'large'}/>
-    );
-  }
-
-  return (
-    <Text style={[{fontFamily: font}, style]}>
-      {children}
-    </Text>
-  );
-
-}
-
 class WelcomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -142,15 +128,7 @@ class WelcomeScreen extends React.Component {
   }
 
   componentDidMount = async () => {
-    await Font.loadAsync({
-      'josefinBold': require('../assets/fonts/JosefinSans-Bold.ttf'),
-      // 'josefin-bold-italic': require('../assets/fonts/JosefinSans-BoldItalic.ttf'),
-      // 'josefin-italic': require('../assets/fonts/JosefinSans-Italic.ttf'),
-      // 'josefin-light': require('../assets/fonts/JosefinSans-Light.ttf'),
-      'josefin': require('../assets/fonts/JosefinSans-Regular.ttf'),
-      // 'josefin-semi-bold': require('../assets/fonts/JosefinSans-SemiBold.ttf'),
-      // 'josefin-thin': require('../assets/fonts/JosefinSans-Thin.ttf')
-    });
+    await Utils.loadAllFonts();
     this.setState({fontLoaded: true})
   };
 
@@ -182,18 +160,18 @@ class WelcomeScreen extends React.Component {
             </View>
             <View style={styles.bottomHalf}>
               <View style={styles.bottomHalfTopHalf}>
-                <FontLoadedText isFontLoaded={this.state.fontLoaded} style={textStyles.welcomeText}>
+                <FLText isFontLoaded={this.state.fontLoaded} style={textStyles.welcomeText}>
                   Welcome To Local Films!
-                </FontLoadedText>
-                <FontLoadedText isFontLoaded={this.state.fontLoaded} style={textStyles.captionText}>
+                </FLText>
+                <FLText isFontLoaded={this.state.fontLoaded} style={textStyles.captionText}>
                   Never waste your time searching for something to watch again.
-                </FontLoadedText>
+                </FLText>
               </View>
               <View style={styles.bottomHalfBottomHalf}>
                 <Button block light bordered style={{height: '30%', backgroundColor: 'white'}}>
-                  <FontLoadedText isFontLoaded={this.state.fontLoaded} style={textStyles.buttonText}>
+                  <FLText isFontLoaded={this.state.fontLoaded} style={textStyles.buttonText}>
                     PROCEED
-                  </FontLoadedText>
+                  </FLText>
                 </Button>
               </View>
             </View>
