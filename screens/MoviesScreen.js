@@ -2,13 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Modal, View, Text } from "react-native";
 import { Container, Header, Button, Icon, Left, Body } from "native-base";
+import MovieAPI from '../network/MovieAPI';
 
 class MoviesScreen extends React.Component {
+
   constructor(props) {
     super(props);
+    this.movieAPIConnector = new MovieAPI();
     this.state = {
 
     };
+  }
+
+  componentDidMount = async () => {
+    await this.movieAPIConnector.getTrendingMovies();
   }
 
   render = () => {
