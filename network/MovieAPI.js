@@ -1,5 +1,4 @@
 const axios = require('axios');
-const IMG_URL_PREPEND = "https://image.tmdb.org/t/p/w500";
 const API_KEY = "31b3c9dba1a512f997a69f344b235e3d";
 
 const AXIOS_SETUP = {
@@ -31,7 +30,7 @@ class MovieAPI {
       // console.log("response from API call for trending movies == ", res.data);
 
       if (res.data) {
-        return res.data;
+        return res.data.results;
       }
 
       return {};
