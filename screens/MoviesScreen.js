@@ -15,7 +15,14 @@ class MoviesScreen extends React.Component {
   }
 
   componentDidMount = async () => {
-    await this.movieAPIConnector.getTrendingMovies();
+
+    try {
+      const rawData = await this.movieAPIConnector.getTrendingMovies();
+      console.log("raw data from trending movie call == ", rawData);
+    }
+    catch (e) {
+
+    }
   }
 
   render = () => {

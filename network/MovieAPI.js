@@ -28,15 +28,24 @@ class MovieAPI {
 
     try {
       const res = await this.apiConnector.get(endpoint, extraData);
-      console.log("response from API call for trending movies == ", res.data);
+      // console.log("response from API call for trending movies == ", res.data);
+
+      if (res.data) {
+        return res.data;
+      }
+
+      return res;
     }
     catch (e) {
+      //this area is executed when there is some kind of error;
       console.log(`Uh Oh, there's been an error
       attempting to retrieve the trending movies of the day`);
       throw(e);
     }
 
   }
+
+
 
 }
 
