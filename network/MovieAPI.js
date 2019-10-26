@@ -34,7 +34,7 @@ class MovieAPI {
         return res.data;
       }
 
-      return res;
+      return {};
     }
     catch (e) {
       //this area is executed when there is some kind of error;
@@ -46,6 +46,36 @@ class MovieAPI {
   }
 
 
+  //this function will retrieve some of the mostpopular movies from the movie api db
+  getPopularMovies = async () => {
+
+    //this is the url that you have to go to in order to get the most popular movies
+    //visit: https://developers.themoviedb.org/3/movies/get-latest-movie for more info
+    const endpoint = "/movie/popular";
+    const extraData = {
+      params: {
+        api_key: API_KEY
+      }
+    };
+
+    try {
+      const res = await this.apiConnector.get(endpoint, extraData);
+      // console.log("response from API call for popular movies == ", res);
+
+      if (res.data) {
+        return res.data.results;
+      }
+
+      return {};
+    }
+    catch (e) {
+      //this area is executed when there is some kind of error;
+      console.log(`Uh Oh, there's been an error
+      attempting to retrieve the currently most popular movies in the industry`);
+      throw(e);
+    }
+
+  }
 
 }
 

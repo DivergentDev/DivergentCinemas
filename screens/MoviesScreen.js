@@ -17,11 +17,11 @@ class MoviesScreen extends React.Component {
   componentDidMount = async () => {
 
     try {
-      const rawData = await this.movieAPIConnector.getTrendingMovies();
-      console.log("raw data from trending movie call == ", rawData);
+      const rawData = await this.movieAPIConnector.getPopularMovies();
+      console.log("raw data from popular movie call == ", rawData);
     }
     catch (e) {
-
+      console.log("error thrown == ", e);
     }
   }
 
